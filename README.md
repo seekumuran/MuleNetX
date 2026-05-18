@@ -28,11 +28,7 @@
 
 ## The Problem
 
-A table of transactions tells you what happened.
-
-A transaction topology graph tells you what's *structurally happening* — who connects to whom, where flow concentrates, what the shape of the activity implies. Most financial crime tools give you the table. MuleNetX gives you the graph.
-
-Money doesn't move randomly. Layering schemes produce long chains. Smurfing creates dense funnels of small-value inputs converging on single destinations. Fan-out attacks radiate from one source to dozens of accounts in burst patterns. These shapes are recognizable — if you render them at the right level of abstraction.
+A table of transactions tells you what happened. A transaction topology graph tells you what's *structurally happening* — who connects to whom, where flow concentrates, what the shape of the activity implies. Most financial crime tools give you the table. Money doesn't move randomly. Layering schemes produce long chains. Smurfing creates dense funnels of small-value inputs converging on single destinations. Fan-out attacks radiate from one source to dozens of accounts in burst patterns. These shapes are recognizable — if you render them at the right level of abstraction.
 
 MuleNetX is a graph-powered intelligence dashboard that makes these shapes visible: force-directed, zoomable, edge-weighted, risk-propagated, and forensically legible.
 
@@ -282,9 +278,7 @@ The component hierarchy is deliberately flat. `App.jsx` manages state. `GraphCan
 
 ## Backend Architecture Notes
 
-The API layer is intentionally minimal. Express serves static JSON. The Python analysis scripts run as preprocessing — they transform `transactions.json` into scored outputs and write those outputs back to disk. The server reads from disk; it doesn't invoke Python at request time.
-
-This is the right tradeoff for this system. The interesting computation happens in the graph engine and the analysis scripts, both of which run offline against synthetic data. A production extension would replace the static JSON reads with database queries and schedule the Python scripts to run against live data feeds. The architecture accommodates this without requiring it.
+The API layer is intentionally minimal. Express serves static JSON. The Python analysis scripts run as preprocessing — they transform `transactions.json` into scored outputs and write those outputs back to disk. The server reads from disk; it doesn't invoke Python at request time. This is the right tradeoff for this system. The interesting computation happens in the graph engine and the analysis scripts, both of which run offline against synthetic data. A production extension would replace the static JSON reads with database queries and schedule the Python scripts to run against live data feeds. The architecture accommodates this without requiring it.
 
 ---
 
@@ -325,73 +319,16 @@ mulenetx/
 └── .env.example                    # Environment variable template
 ```
 
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- Python 3.10+
-- npm or yarn
-
-### Installation
-
-```bash
-git clone https://github.com/Kumaranshub/MuleNetX.git
-cd MuleNetX
-```
-
-**Start the API server:**
-```bash
-cd api
-npm install
-node server.js
-# API server listening on http://localhost:5000
-```
-
-**Run the analysis pipeline (optional — pre-scored data is included):**
-```bash
-cd analysis
-pip install -r requirements.txt
-python anomaly_scan.py
-python risk_score.py
-```
-
-**Start the frontend:**
-```bash
-cd dashboard
-npm install
-npm run dev
-# Dashboard running on http://localhost:5173
-```
-
-### Docker (Full Stack)
-
-```bash
-cp .env.example .env
-docker-compose up --build
-```
 
 ---
 
 ## Technical Philosophy
 
-Systems that visualize complexity should feel like they understand the complexity they're visualizing.
-
-Most financial crime dashboards fail this. They surface transactions as tables, alerts as counts, risk as a number — accurate, but structurally blind. They tell you what happened without telling you what the shape of what happened implies. A layering ring and a random walk look identical in a transaction table. They look completely different in a topology graph.
-
-MuleNetX was built around the graph as the primary analytical primitive. Every design decision — the force-directed layout, the risk propagation visualization, the centrality-weighted node coloring, the topology templates — exists to make the structural properties of transaction networks legible.
-
-The UI aesthetic follows from this. Information density is not a failure to prioritize; it's a feature. Forensic tools are used by people who need to hold a lot of context simultaneously. The panels don't simplify — they organize. The terminal feed isn't decorative; it communicates system state. The system panel isn't visual chrome; it reports real graph statistics.
-
-Nothing is decorative that isn't also functional. And the functional things are designed to be legible.
+Systems that visualize complexity should feel like they understand the complexity they're visualizing. MuleNetX was built around the graph as the primary analytical primitive. Every design decision — the force-directed layout, the risk propagation visualization, the centrality-weighted node coloring, the topology templates — exists to make the structural properties of transaction networks legible.
 
 ---
 
 ## Contributors
-
-Built by engineers who probably should've gone outside more:
 
 | Contributor | GitHub |
 |-------------|--------|
@@ -401,17 +338,5 @@ Built by engineers who probably should've gone outside more:
 | **Tawheed** | [@twhdd1201](https://github.com/twhdd1201) |
 
 ---
-
-## License
-
-MIT — build on it, break it, make it better.
-
----
-
-<div align="center">
-
-*MuleNetX exists because we wanted to understand what financial crime looks like when you turn it into a graph — and then render that graph with enough care that it communicates something true about the structure beneath it.*
-
-*We built something that looks like an intelligence tool because we were trying to think like one.*
 
 </div>
