@@ -1,12 +1,11 @@
 html,
 body,
 #root {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  margin: 0;
   overflow: hidden;
+  background: #000000;
 }
 
 * {
@@ -15,8 +14,41 @@ body,
 
 body {
   font-family: "JetBrains Mono", monospace;
-  background: #000000;
   color: #d8d8d8;
+  background: #000;
+  text-shadow: 0 0 4px rgba(255,255,255,0.04);
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+
+  background-image: linear-gradient(
+    transparent 50%,
+    rgba(255,255,255,0.015) 50%
+  );
+
+  background-size: 100% 4px;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.98;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.97;
+  }
+}
+
+#root {
+  animation: flicker 0.12s infinite;
 }
 
 ::-webkit-scrollbar {
@@ -24,11 +56,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: #080808;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #222;
+  background: #1d1d1d;
 }
 
 @keyframes spin {
