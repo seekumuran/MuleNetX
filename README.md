@@ -1,31 +1,105 @@
+<div align="center">
+
 ```
- ███╗   ███╗██╗   ██╗██╗     ███████╗███╗   ██╗███████╗████████╗██╗  ██╗
- ████╗ ████║██║   ██║██║     ██╔════╝████╗  ██║██╔════╝╚══██╔══╝╚██╗██╔╝
- ██╔████╔██║██║   ██║██║     █████╗  ██╔██╗ ██║█████╗     ██║    ╚███╔╝
- ██║╚██╔╝██║██║   ██║██║     ██╔══╝  ██║╚██╗██║██╔══╝     ██║    ██╔██╗
- ██║ ╚═╝ ██║╚██████╔╝███████╗███████╗██║ ╚████║███████╗   ██║   ██╔╝ ██╗
- ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
+███╗   ███╗██╗   ██╗██╗     ███████╗███╗   ██╗███████╗████████╗██╗  ██╗
+████╗ ████║██║   ██║██║     ██╔════╝████╗  ██║██╔════╝╚══██╔══╝╚██╗██╔╝
+██╔████╔██║██║   ██║██║     █████╗  ██╔██╗ ██║█████╗     ██║    ╚███╔╝ 
+██║╚██╔╝██║██║   ██║██║     ██╔══╝  ██║╚██╗██║██╔══╝     ██║    ██╔██╗ 
+██║ ╚═╝ ██║╚██████╔╝███████╗███████╗██║ ╚████║███████╗   ██║   ██╔╝ ██╗
+╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝
 ```
 
-*Transaction topology. Risk propagation. Suspicious-looking lines connecting to other suspicious-looking lines.*
+**Graph-powered financial crime visualization and risk propagation platform**
 
-## What This Actually Is
+*Transaction topology. Risk propagation. Suspicious lines connecting to other suspicious lines.*
 
-MuleNetX is a graph-powered financial crime visualization dashboard built to explore:
-- How transaction networks form topology patterns you can actually see
-- How anomaly detection logic can be threaded through a live graph
-- How forensic-style UI design communicates complexity without requiring a manual
+---
 
+[![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![D3.js](https://img.shields.io/badge/D3.js-F9A03C?style=flat-square&logo=d3dotjs&logoColor=white)](https://d3js.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
 
-## Features
+</div>
 
-- **Live transaction graph** rendered with D3.js over a React canvas layer — force-directed, zoomable, edge-weighted
-- **Risk propagation** visualization that traces how suspicion moves through a network in real time
-- **Anomaly detection feed** surfacing outlier transactions through a Python scoring layer
-- **Event feed panel** streaming synthetic transaction events in chronological order
-- **System status panel** displaying infrastructure health metrics with the appropriate level of gravitas
-- **Three fraud topology templates** — fan-out, layering ring, and smurfing
-- **Centrality analysis** identifying which nodes are doing the most suspicious connecting
+---
+
+## The Problem
+
+A table of transactions tells you what happened.
+
+A transaction topology graph tells you what's *structurally happening* — who connects to whom, where flow concentrates, what the shape of the activity implies. Most financial crime tools give you the table. MuleNetX gives you the graph.
+
+Money doesn't move randomly. Layering schemes produce long chains. Smurfing creates dense funnels of small-value inputs converging on single destinations. Fan-out attacks radiate from one source to dozens of accounts in burst patterns. These shapes are recognizable — if you render them at the right level of abstraction.
+
+MuleNetX is a graph-powered intelligence dashboard that makes these shapes visible: force-directed, zoomable, edge-weighted, risk-propagated, and forensically legible.
+
+---
+
+## Visual Showcase
+
+### India Risk Heatmap — National Transaction Intelligence
+
+> Geographic risk distribution across states, visualized as a heat-graded chloropleth with live alert feeds and per-state drill-down.
+
+![India Heatmap Dashboard](./screenshots/Dashboard.jpeg)
+
+Suspicious volume of **₹1.3Cr** tracked across **11,842 accounts** and **23,761 transactions**. Maharashtra leads by volume at ₹28.5L. Tamil Nadu sits at a risk score of 73/100 — 17 accounts, 4 active cases, ₹7.4L in flagged volume. The map encodes risk density through color; the panels encode operational context through data.
+
+---
+
+### Graph Explorer — Force-Directed Transaction Topology
+
+> The visual center of the system. 152 nodes, 421 edges, rendered as a live force-directed graph with real-time risk propagation and cluster detection.
+
+![Graph Explorer](./screenshots/GraphDB.jpeg)
+
+The topology score is **84 (HIGH)**. Propagation index is **0.72 (ELEVATED)**. 14 active clusters, network density at 0.037. The graph isn't decorative — every node position, edge weight, and color encodes a structural fact about the transaction network. Red is high-risk, orange is medium, green is low. The selected node (ACC-8842, risk score 94) shows ₹4,50,000 inflow against ₹7,35,000 outflow across 47 connections — structurally consistent with a layering intermediary.
+
+---
+
+### Cases Dashboard — Investigative Case Management
+
+> Active investigation tracking with risk score breakdown, fraud typology classification, and investigator assignment.
+
+![Cases Overview](./screenshots/Case.jpeg)
+
+247 total cases — 23 high-risk, 68 under investigation, 156 closed. Layering is the dominant typology at 36%, followed by structuring at 25.1%. The case table surfaces the highest-priority items with enough context (risk score, investigator, last activity, fraud type) to triage without opening anything. The risk score distribution bar at the bottom is visual triage.
+
+---
+
+### Analytics — Temporal Trend Intelligence
+
+> Case and alert trends over time, fraud type distribution, alert reason breakdown, and resolution performance metrics.
+
+![Analytics Dashboard](./screenshots/Analysis.jpeg)
+
+47 total cases, 156 alerts generated, 29 high-risk alerts. False positive rate at 8.6% — down 2.4% from the previous period. Average resolution time 18.4h, down 15%. Layering transactions are the top alert driver at 26.9%, followed by large cash deposits and structuring. The charts show daily granularity across a 30-day window; the performance summary shows period-over-period delta.
+
+---
+
+### Live Terminal Feed — System Operational Log
+
+> Real-time streaming log of system events, alerts, and graph engine activity — the operational layer made visible.
+
+![Terminal Feed](./screenshots/Terminal.png)
+
+```
+[MuleNetX] API server listening on http://localhost:5000
+[MuleNetX] Graph engine initialized
+[MuleNetX] Loading datasets...
+[MuleNetX] 11,842 transactions ingested
+[MuleNetX] 2,314 entities mapped
+[MuleNetX] Topology projection complete
+[MuleNetX] Risk engine online
+[MuleNetX] Event stream connected
+
+[2026-05-18 20:51:01] [ALERT] High risk transfer detected: ACC-8842 -> ACC-9921 | Amount: ₹4,80,000 | Risk: 94
+[2026-05-18 20:51:03] [EVENT] New cluster formed: Cluster_17 | Nodes: 14 | Risk Score: 87
+[2026-05-18 20:51:05] [ALERT] Anomaly pattern matched: Layering Ring v2.1 | Confidence: 0.86
+```
 
 ---
 
@@ -33,188 +107,225 @@ MuleNetX is a graph-powered financial crime visualization dashboard built to exp
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                          FRONTEND LAYER                              │
-│                                                                      │
+│                          FRONTEND LAYER                             │
+│                                                                     │
 │   BootSequence → App Shell → GraphCanvas + SystemPanel + EventFeed  │
-│                              TerminalFeed                           │
+│                              TerminalFeed + Analytics + Cases       │
 └──────────────────────────────┬──────────────────────────────────────┘
                                │ HTTP / REST
 ┌──────────────────────────────▼──────────────────────────────────────┐
-│                           API LAYER                                  │
-│                                                                      │
-│             server.js  ←→  fetchGraph.js                            │
+│                           API LAYER                                 │
+│                                                                     │
+│             server.js  ←→  fetchGraph.js                           │
 └──────────────────────────────┬──────────────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────────────┐
-│                          DATA LAYER                                  │
-│                                                                      │
+│                          DATA LAYER                                 │
+│                                                                     │
 │        graph.json          transactions.json                        │
 │              ↑                     ↑                                │
 │        export_graph.py      anomaly_scan.py + risk_score.py        │
-└─────────────────────────────────────────────────────────────────────┘
+└──────────────────────────────┬──────────────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────────────┐
-│                       GRAPH ENGINE LAYER                             │
-│                                                                      │
-│       topology.js    centrality.js    propagation.js                │
-└─────────────────────────────────────────────────────────────────────┘
+│                       GRAPH ENGINE LAYER                            │
+│                                                                     │
+│       topology.js    centrality.js    propagation.js               │
+└──────────────────────────────┬──────────────────────────────────────┘
                                │
 ┌──────────────────────────────▼──────────────────────────────────────┐
-│                      FRAUD TEMPLATE LAYER                            │
-│                                                                      │
+│                      FRAUD TEMPLATE LAYER                           │
+│                                                                     │
 │       fan_out.yaml    layering_ring.yaml    smurfing.yaml           │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+
+The architecture is deliberately layered. The frontend is concerned with rendering and interaction. The API layer is concerned with data access, not computation. The analysis scripts run as preprocessing steps — they write outputs the server then serves, rather than running inline with requests. The graph engine is the computational core: topology analysis, centrality computation, and risk propagation all live here, independent of the UI.
 
 ---
 
 ## Graph Theory
 
-Financial crime networks have structure. Money doesn't move randomly — it moves in patterns. Layering schemes create long chains. Smurfing creates clusters of small-value nodes funneling upward. Fan-out attacks radiate from a single source to dozens of destinations.
+Financial crime networks have structure. Understanding that structure requires a vocabulary.
 
-Graph theory gives you the language to describe these patterns: **nodes** are entities (accounts, wallets, institutions), **edges** are transactions (directional, weighted by value), and **topology** is the shape of the whole thing — how it's connected, where the density clusters, what the structure implies.
+**Nodes** are entities — bank accounts, wallets, shell companies, payment intermediaries. **Edges** are transactions — directional, weighted by value, timestamped. **Topology** is the shape of the whole: how densely connected, where the clusters form, what the structural layout implies about intent.
 
-**Centrality** measures which nodes matter most. High betweenness centrality means a node is sitting between a lot of other nodes — structurally important, possibly suspicious. High degree centrality means a node is connected to a lot of other nodes — also potentially suspicious.
+Three centrality measures matter most in this context:
 
-**Propagation** is what happens when you ask: if this node is compromised, how far does that travel through the network? 
+- **Betweenness centrality** — how often a node sits on the shortest path between other nodes. High betweenness in a transaction graph means structural importance: this account is a routing point, not an endpoint. That's suspicious.
+- **Degree centrality** — how many direct connections a node has. Unexpectedly high degree (for an account type that shouldn't have it) is anomalous.
+- **Eigenvector centrality** — not just how many connections, but how important those connections are. Being connected to high-centrality nodes amplifies your own score.
 
-MuleNetX renders all of this visually, in real time, so you can watch a synthetic laundering ring slowly become more obviously a laundering ring.
+**Propagation** models contagion: if node A is compromised, how does that risk travel through the network? MuleNetX implements a weighted diffusion model across edges — risk attenuates with graph distance but accumulates through high-centrality paths. The result is a heat signature: which parts of the network are downstream of a flagged entity.
+
+The fraud templates aren't illustrative. They're structurally generative — each YAML defines the mathematical constraints of its pattern, and the graph engine synthesizes networks that satisfy those constraints. The patterns look like money laundering because they were built according to the topology of money laundering.
 
 ---
 
-## File-by-File Breakdown
+## Fraud Topology Patterns
 
-### `dashboard/src/components/`
+### Fan-Out
+
+One source account distributes to a large number of destination accounts in a compressed time window. In the graph, this renders as a radial burst — a single high-degree hub with many outbound edges and low return flow. Diagnostic signal: degree asymmetry. The hub sends but rarely receives.
+
+```yaml
+# fan_out.yaml (abridged)
+pattern: fan_out
+source_accounts: 1
+destination_accounts: 25-50
+time_window_minutes: 15
+amount_distribution: uniform_small
+return_flow: none
+```
+
+### Layering Ring
+
+Funds move through a sequence of intermediate accounts — often in a cycle or long chain — to obscure origin. The graph renders this as a winding path with minimal cross-connections. Diagnostic signal: long-path structure, low clustering coefficient, sequential timing.
+
+```yaml
+# layering_ring.yaml (abridged)
+pattern: layering_ring
+chain_length: 8-15
+cycle_probability: 0.3
+timing: sequential_delay
+amount_decay: 0.02_per_hop
+```
+
+### Smurfing
+
+Many distributed sources, each transacting below reporting thresholds, converging on a single destination. The graph renders this as a dense inverted funnel. Diagnostic signal: many low-value inputs, single high-value output node, source accounts with minimal prior activity.
+
+```yaml
+# smurfing.yaml (abridged)
+pattern: smurfing
+source_count: 30-80
+per_transaction_ceiling: 99000
+destination_accounts: 1-3
+aggregation_window_hours: 48
+```
+
+---
+
+## Component Breakdown
+
+### Frontend — `dashboard/src/components/`
 
 **`GraphCanvas.jsx`**
-The visual center of everything. Takes the transaction graph data and renders it as a live, force-directed topology visualization using D3.js inside a React component. Nodes pulse. Edges carry weight. Suspicious clusters look suspicious. 
+The visual core. Manages a D3.js force simulation inside a React component without letting the two rendering systems conflict — D3 owns the DOM within its canvas, React owns state coordination outside it. Nodes carry risk-encoded color. Edges carry transaction weight. The simulation is live: add a node or change an edge weight and the topology responds physically.
 
 **`EventFeed.jsx`**
-A scrolling panel of synthetic transaction events with timestamps, entity IDs, amounts, and risk flags. Looks like a live intelligence feed. Is, technically, a very well-formatted JSON array rendered with some CSS transitions.
+A chronological stream of synthetic transaction events: entity IDs, amounts, timestamps, risk flags. Rendered with CSS transitions to simulate genuine stream velocity. Functions as both atmosphere and operational context.
 
 **`SystemPanel.jsx`**
-Displays system-level status metrics: node count, edge count, active alerts, analysis throughput. The kind of panel that makes a dashboard feel like infrastructure.
+Infrastructure metrics: node count, edge count, active alerts, analysis throughput. Gives the interface operational weight — this panel makes the dashboard feel like it's monitoring something real, because structurally, it is.
 
 **`TerminalFeed.jsx`**
-A scrolling terminal window providing live commentary on what the system is ostensibly doing — graph computations, anomaly checks, topology updates. Adds significant atmospheric weight to the interface. 
+A scrolling log of system activity — graph computations, anomaly triggers, topology updates. This component does atmospheric and functional work simultaneously: it communicates what the system is doing while making the interface feel like a live intelligence feed.
 
 **`App.jsx`**
-The root orchestration layer. Assembles the components, manages state, coordinates data flow from the API layer to the visual components. The thing that makes the other things work together.
-
-**`main.jsx`**
-Vite entry point. Mounts the React tree. 
+Root orchestration. State management, data coordination, component composition. The component hierarchy is deliberately flat — no deep nesting, no prop-drilling pyramids. Everything renders from here.
 
 ---
 
-### `api/`
+### API Layer — `api/`
 
 **`server.js`**
-A lightweight Express server that exposes graph data and transaction events as REST endpoints. Reads from the data layer, responds to the frontend. Nothing exotic. 
+Lightweight Express server. Reads from the data layer, exposes graph data and transaction events as REST endpoints. Not a bottleneck. Not trying to be.
 
 **`fetchGraph.js`**
-Client-side data fetching utility. Handles requests from the frontend to the API layer. Abstracts the HTTP calls so the components don't have to think about it.
+Client-side HTTP abstraction. Components call this, not raw `fetch`. Keeps the data-fetching logic out of the rendering logic.
 
 ---
 
-### `analysis/`
+### Analysis Layer — `analysis/`
 
 **`anomaly_scan.py`**
-Python script that scans transaction data for statistical outliers — unusual amounts, high-velocity sequences, structuring patterns. Outputs a list of flagged transactions with confidence values. The 40% actual graph theory part of the fraud detection.
+Statistical outlier detection on transaction data. Flags unusual amounts, high-velocity sequences, and structuring patterns. Outputs scored transactions with confidence values. Runs as a preprocessing step, not a live service.
 
 **`risk_score.py`**
-Assigns risk scores to individual nodes based on their transaction behavior and network position. Feeds into the graph visualization layer so high-risk nodes render differently. The output is consumed by the frontend to color-code suspicion.
+Assigns per-node risk scores based on transaction behavior and network position (centrality, connection type, flow asymmetry). Output is consumed by the frontend to color-code the graph visualization. The score is what makes the graph tell you where to look.
 
 ---
 
-### `data/`
-
-**`graph.json`**
-The core data structure. A serialized directed graph: nodes with IDs and metadata, edges with direction, weight, and timestamps. This is what the graph engine reads, what the analysis layer writes to, and what the frontend ultimately renders.
-
-**`transactions.json`**
-A flat list of synthetic transaction records. Source accounts, destination accounts, amounts, timestamps, transaction types. The raw material from which the graph is constructed and from which the event feed draws.
-
----
-
-### `database_framework/`
-
-**`export_graph.py`**
-Converts the transaction data into graph-structured JSON suitable for the visualization layer. The translation layer between raw records and topology. 
-
----
-
-### `graph_engine/`
+### Graph Engine — `graph_engine/`
 
 **`topology.js`**
-Analyzes the structural properties of the graph — connected components, path lengths, density, clustering coefficients. Gives you the shape of the network. Tells you whether you're looking at a ring, a chain, a hub-and-spoke, or something that doesn't have a clean name.
+Structural analysis: connected components, path lengths, clustering coefficients, density. Gives you the shape of the network and tells you whether you're looking at a ring, a chain, a hub-and-spoke, or something with no clean name.
 
 **`centrality.js`**
-Computes centrality metrics across the graph. Betweenness, degree, eigenvector. Identifies the nodes that are structurally important — the ones sitting at intersections, the ones everything flows through. In a money laundering context, these are interesting nodes.
+Computes betweenness, degree, and eigenvector centrality across the graph. Surfaces the nodes that are structurally important — the intersections, the routers, the entities everything flows through. In a laundering context, these are the interesting nodes.
 
 **`propagation.js`**
-Simulates how risk or compromise spreads through the network from a given source node. Uses a weighted diffusion model across edges. Lets you visualize contagion — how far a single flagged entity's influence extends through the transaction topology.
+Weighted diffusion simulation from a source node. Models how risk or compromise spreads through the network topology. Produces a gradient — not just "this node is flagged" but "here is how far the influence of this flagged node extends, and at what attenuation."
 
 ---
 
-### `fraud_templates/`
+### Data Layer — `data/`
 
-**`fan_out.yaml`**
-Describes a fan-out transaction pattern: one source account distributes funds to a large number of destination accounts in a short time window. Classic structuring precursor. The graph renders this as a radial burst from a single hub node.
+**`graph.json`**
+The canonical data structure: a serialized directed graph with node metadata and edge weights. This is what the graph engine reads, what the analysis layer writes, and what the frontend ultimately renders.
 
-**`layering_ring.yaml`**
-Describes a layering scheme: funds move through a sequence of intermediate accounts in a ring or chain to obscure origin. The graph renders this as a long winding path with minimal cross-connections.
-
-**`smurfing.yaml`**
-Describes a smurfing pattern: aggregation of many small-value transactions from distributed sources into a single destination, staying below reporting thresholds. The graph renders this as a dense funnel — many small inputs converging on one node.
+**`transactions.json`**
+Flat transaction records: source, destination, amount, timestamp, type. The raw material. The graph is derived from this; the event feed draws from this directly.
 
 ---
 
-### `deploy/`
+## Frontend Architecture Notes
 
-**`docker-compose.yml`**
-Defines the multi-container deployment: frontend, API server, and any supporting services. 
+The React/D3 integration in `GraphCanvas` deserves explanation because it's genuinely non-trivial. D3 wants to own the DOM. React wants to own the DOM. Running both naively produces conflicts — React rerenders destroy D3's mutation state; D3 mutations confuse React's reconciler.
 
----
+The solution: D3 is given an SVG element reference and owns everything inside it. React manages everything outside — state, props, lifecycle. The component uses a `useEffect` hook to initialize the D3 simulation on mount and update it on prop changes, but never lets React attempt to reconcile the SVG contents. This is the correct pattern and it's not obvious until you've broken it a few times.
 
-### Root
-
-**`.env.example`**
-Environment variable template. Copy it to `.env`, fill in your values, and the system knows what it's doing.
+The component hierarchy is deliberately flat. `App.jsx` manages state. `GraphCanvas`, `EventFeed`, `SystemPanel`, and `TerminalFeed` are display components — they receive data, they render it. Only `GraphCanvas` has meaningful interaction logic (click, zoom, drag). Everything else is read-only.
 
 ---
 
-## Frontend Architecture
+## Backend Architecture Notes
 
-The dashboard is built in React with Vite as the build layer. The graph visualization uses D3.js, which does not play nicely with React's virtual DOM by default — the `GraphCanvas` component manages this carefully, using D3 for rendering and React for state coordination without letting them fight over the same elements.
+The API layer is intentionally minimal. Express serves static JSON. The Python analysis scripts run as preprocessing — they transform `transactions.json` into scored outputs and write those outputs back to disk. The server reads from disk; it doesn't invoke Python at request time.
 
-The component hierarchy is deliberately flat. Everything renders from `App.jsx`, which manages the data state and passes it down. The panels (`SystemPanel`, `EventFeed`, `TerminalFeed`) are display-only — they receive data, they render it. The `GraphCanvas` is the only component with meaningful interaction logic.
-
-The UI is designed around information density. Nothing is decorative that isn't also functional. The terminal feed is atmospheric but also communicates what the system is computing. The system panel is visual but also reports real graph statistics. 
+This is the right tradeoff for this system. The interesting computation happens in the graph engine and the analysis scripts, both of which run offline against synthetic data. A production extension would replace the static JSON reads with database queries and schedule the Python scripts to run against live data feeds. The architecture accommodates this without requiring it.
 
 ---
 
-## Backend Architecture
+## Project Structure
 
-Deliberately lightweight. The API layer is an Express server with a handful of endpoints — it reads from static JSON and returns it. The analysis scripts (Python) run as preprocessing steps, not live services; they process transaction data and write outputs that the server then serves.
-
-This is intentional. The interesting complexity lives in the graph engine and the frontend. The backend's job is to not be the bottleneck.
-
-If you wanted to extend this to a real data source, you'd replace the static JSON reads in `server.js` with database queries and update the Python scripts to run against live data. The architecture accommodates this. It just doesn't require it.
+```
+mulenetx/
+├── dashboard/
+│   └── src/
+│       ├── components/
+│       │   ├── GraphCanvas.jsx     # D3 force-directed graph renderer
+│       │   ├── EventFeed.jsx       # Live transaction event stream
+│       │   ├── SystemPanel.jsx     # Infrastructure status metrics
+│       │   └── TerminalFeed.jsx    # System activity log
+│       ├── App.jsx                 # Root orchestration layer
+│       └── main.jsx                # Vite entry point
+├── api/
+│   ├── server.js                   # Express REST API
+│   └── fetchGraph.js               # Client-side data fetching
+├── analysis/
+│   ├── anomaly_scan.py             # Statistical outlier detection
+│   └── risk_score.py               # Per-node risk scoring
+├── data/
+│   ├── graph.json                  # Serialized directed graph
+│   └── transactions.json           # Raw transaction records
+├── database_framework/
+│   └── export_graph.py             # Transaction → graph translation
+├── graph_engine/
+│   ├── topology.js                 # Structural graph analysis
+│   ├── centrality.js               # Centrality metric computation
+│   └── propagation.js              # Risk diffusion simulation
+├── fraud_templates/
+│   ├── fan_out.yaml                # Fan-out pattern definition
+│   ├── layering_ring.yaml          # Layering ring pattern definition
+│   └── smurfing.yaml               # Smurfing pattern definition
+├── deploy/
+│   └── docker-compose.yml          # Multi-container deployment config
+└── .env.example                    # Environment variable template
+```
 
 ---
-
-## Fraud Template Architecture
-
-The `fraud_templates/` directory contains YAML definitions of canonical money laundering patterns. Each template specifies:
-
-- Node count and type distribution
-- Edge structure (direction, density, branching factor)
-- Timing characteristics (transaction velocity, sequencing)
-- Amount patterns (round numbers, structuring thresholds, aggregation targets)
-
-The graph engine reads these templates to generate synthetic networks that exhibit the described topology. The result is a graph that looks like a real layering ring because it was constructed according to the structural logic of a real layering ring.
-
-This is how the visualization stays honest. The patterns don't look suspicious because we made them look suspicious. They look suspicious because suspicious patterns have recognizable shapes.
 
 ---
 
@@ -222,25 +333,25 @@ This is how the visualization stays honest. The patterns don't look suspicious b
 
 Systems that visualize complexity should feel like they understand the complexity they're visualizing.
 
-Most dashboards fail this. They show data without conveying the relationships between data. A table of transactions tells you what happened. A transaction topology graph tells you what's happening structurally — who connects to whom, where the flow concentrates, what the shape of the activity implies.
+Most financial crime dashboards fail this. They surface transactions as tables, alerts as counts, risk as a number — accurate, but structurally blind. They tell you what happened without telling you what the shape of what happened implies. A layering ring and a random walk look identical in a transaction table. They look completely different in a topology graph.
 
-MuleNetX was built to explore that gap. The graph is the primary interface. The panels exist to support the graph. Every design decision was made in service of making the topology legible — readable at a glance, explorable on interaction, and structurally honest about what the data actually contains.
+MuleNetX was built around the graph as the primary analytical primitive. Every design decision — the force-directed layout, the risk propagation visualization, the centrality-weighted node coloring, the topology templates — exists to make the structural properties of transaction networks legible.
+
+The UI aesthetic follows from this. Information density is not a failure to prioritize; it's a feature. Forensic tools are used by people who need to hold a lot of context simultaneously. The panels don't simplify — they organize. The terminal feed isn't decorative; it communicates system state. The system panel isn't visual chrome; it reports real graph statistics.
+
+Nothing is decorative that isn't also functional. And the functional things are designed to be legible.
 
 ---
-
 
 ## Contributors
 
-Built by people who probably should've gone outside more:
-
-- **Kumaran** — [@Kumaranshub](https://github.com/Kumaranshub)
-- **Sarvesh** — [@Sarvesh-Sarz](https://github.com/Sarvesh-Sarz)
-- **Partha** — [@DatGod920](https://github.com/DatGod920)
-- **Tawheed** — [@twhdd1201](https://github.com/twhdd1201)
+| Contributor | GitHub |
+|-------------|--------|
+| **Kumaran** | [@Kumaranshub](https://github.com/Kumaranshub) |
+| **Sarvesh** | [@Sarvesh-Sarz](https://github.com/Sarvesh-Sarz) |
+| **Partha** | [@DatGod920](https://github.com/DatGod920) |
+| **Tawheed** | [@twhdd1201](https://github.com/twhdd1201) |
 
 ---
 
-
-## Closing Statement
-
-MuleNetX exists because we wanted to understand what financial crime looks like when you turn it into a graph — and then render that graph with enough care that it communicates something true about the structure beneath it. We built something that looks like an intelligence tool because we were trying to think like one.
+</div>
