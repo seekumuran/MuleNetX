@@ -317,7 +317,7 @@ Systems that visualize complexity should feel like they understand the complexit
 
 | Contributor | GitHub |
 |-------------|--------|
-| **Kumaran** | [@Kumaranshub](https://github.com/Kumaranshub) |
+| **Kumaran** | [@Kumaranshub](https://github.com/ckumuran) |
 | **Sarvesh** | [@Sarvesh-Sarz](https://github.com/Sarvesh-Sarz) |
 | **Partha** | [@DatGod920](https://github.com/DatGod920) |
 | **Tawheed** | [@twhdd1201](https://github.com/twhdd1201) |
