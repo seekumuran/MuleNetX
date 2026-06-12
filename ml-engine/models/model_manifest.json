@@ -1,0 +1,4 @@
+{
+  "model":"xgb_fraud.pkl",
+  "sha256":"REPLACE_AFTER_TRAINING"
+}
