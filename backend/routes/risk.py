@@ -1,26 +1,16 @@
 from fastapi import APIRouter
+from fastapi import Depends
 
-from backend.neo4j_client import neo4j_client
+from backend.core.dependencies import (
+    current_user
+)
 
 router = APIRouter()
 
 
 @router.get("/risk/top")
-
-def top_risk():
-
-    query = """
-    MATCH (a:Account)
-
-    RETURN
-        a.account_id AS account,
-        a.risk_score AS risk
-
-    ORDER BY risk DESC
-
-    LIMIT 100
-    """
-
-    result = neo4j_client.execute(query)
-
-    return [dict(x) for x in result]
+def top_risk(
+    user=Depends(
+        current_user
+    )
+):
