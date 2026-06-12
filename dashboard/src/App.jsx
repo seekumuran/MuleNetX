@@ -1,8 +1,10 @@
-import SystemOverview from "./components/SystemOverview";
-import RiskLeaderboard from "./components/RiskLeaderboard";
+import AlertFeed from "./components/AlertFeed";
+import CaseManagement from "./components/CaseManagement";
 import CommunityExplorer from "./components/CommunityExplorer";
 import GraphCanvas from "./components/GraphCanvas";
 import InvestigationWorkspace from "./components/InvestigationWorkspace";
+import RiskLeaderboard from "./components/RiskLeaderboard";
+import SystemOverview from "./components/SystemOverview";
 
 export default function App() {
 
@@ -12,6 +14,8 @@ export default function App() {
 
             <SystemOverview />
 
+            <AlertFeed />
+
             <RiskLeaderboard />
 
             <CommunityExplorer />
@@ -19,6 +23,8 @@ export default function App() {
             <GraphCanvas />
 
             <InvestigationWorkspace />
+
+            <CaseManagement />
 
         </div>
 
