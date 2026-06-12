@@ -1,16 +1,29 @@
-from fastapi import APIRouter
-from fastapi import Depends
-
-from backend.core.dependencies import (
-    current_user
+from backend.core.cache import (
+    cache_get,
+    cache_set
 )
 
-router = APIRouter()
-
-
 @router.get("/risk/top")
-def top_risk(
-    user=Depends(
-        current_user
+def top_risk():
+
+    cached = cache_get(
+        "risk_top"
     )
-):
+
+    if cached:
+        return cached
+
+    result = ...
+
+    data = [
+        dict(x)
+        for x in result
+    ]
+
+    cache_set(
+        "risk_top",
+        data,
+        300
+    )
+
+    return data
