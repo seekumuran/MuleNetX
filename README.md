@@ -238,14 +238,11 @@ MuleNetX/
 │   ├── features.py
 │   └── models/                # Serialized model artifacts
 ├── scripts/                   # Operational and utility scripts
-│   ├── ingest.py
-│   ├── run_analytics.py
-│   ├── train_model.py
-│   └── healthcheck.py
-└── tests/
-    ├── unit/
-    ├── integration/
-    └── fixtures/
+    ├── ingest.py
+    ├── run_analytics.py
+    ├── train_model.py
+    └── healthcheck.py
+
 ```
 
 ### Module Responsibility Summary
