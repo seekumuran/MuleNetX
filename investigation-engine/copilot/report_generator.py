@@ -10,8 +10,18 @@ from investigation_engine.copilot.ollama_client import (
     generate
 )
 
+from investigation_engine.rag.retriever import (
+    retrieve
+)
 
-def generate_report(account_id: str):
+from investigation_engine.rag.store_case import (
+    store_case
+)
+
+
+def generate_report(
+    account_id: str
+):
 
     context = get_account_context(
         account_id
@@ -22,12 +32,29 @@ def generate_report(account_id: str):
             "error": "Account not found"
         }
 
+    history = retrieve(
+        account_id
+    )
+
     prompt = build_prompt(
         context
     )
 
+    if history:
+
+        prompt += "\n\nPREVIOUS CASES\n\n"
+
+        for case in history:
+            prompt += case["report"]
+            prompt += "\n\n"
+
     report = generate(
         prompt
+    )
+
+    store_case(
+        account_id,
+        report
     )
 
     return {
