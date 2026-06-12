@@ -1,116 +1,60 @@
-import { useEffect, useRef } from "react";
-import * as d3 from "d3";
+import { useState } from "react";
 
-export default function GraphCanvas({ data }) {
+import ForceGraph from "./ForceGraph";
 
-  const ref = useRef();
 
-  useEffect(() => {
+export default function GraphCanvas() {
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const [account,setAccount] =
+        useState("");
 
-    d3.select(ref.current)
-      .selectAll("*")
-      .remove();
+    const [graph,setGraph] =
+        useState({
+            nodes: [],
+            links: []
+        });
 
-    const svg = d3
-      .select(ref.current)
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+    async function loadGraph() {
 
-    const simulation = d3
-      .forceSimulation(data.nodes)
+        const response =
+        await fetch(
+            `http://localhost:8000/api/graph/network/${account}`
+        );
 
-      .force(
-        "link",
-        d3.forceLink(data.edges)
-          .id(d => d.id)
-          .distance(180)
-      )
+        const data =
+        await response.json();
 
-      .force(
-        "charge",
-        d3.forceManyBody()
-          .strength(-500)
-      )
+        setGraph(data);
+    }
 
-      .force(
-        "center",
-        d3.forceCenter(width / 2, height / 2)
-      );
+    return (
 
-    const links = svg
-      .append("g")
-      .selectAll("line")
-      .data(data.edges)
-      .enter()
-      .append("line")
-      .style("stroke", "#1d1d1d")
-      .style("stroke-width", 1);
+        <div>
 
-    const nodes = svg
-      .append("g")
-      .selectAll("circle")
-      .data(data.nodes)
-      .enter()
-      .append("circle")
+            <h2>
+                Graph Explorer
+            </h2>
 
-      .attr("r", d => 5 + d.risk / 14)
+            <input
+                value={account}
+                onChange={(e)=>
+                    setAccount(
+                        e.target.value
+                    )
+                }
+                placeholder="Account ID"
+            />
 
-      .style("fill", d => {
+            <button
+                onClick={loadGraph}
+            >
+                Explore
+            </button>
 
-        if (d.risk > 85) {
-          return "#d13c3c";
-        }
+            <ForceGraph
+                data={graph}
+            />
 
-        if (d.risk > 60) {
-          return "#c08920";
-        }
-
-        return "#2e8b4e";
-      });
-
-    const labels = svg
-      .append("g")
-      .selectAll("text")
-      .data(data.nodes)
-      .enter()
-      .append("text")
-
-      .text(d => d.id)
-
-      .style("fill", "#555")
-      .style("font-size", "10px")
-      .style("font-family", "JetBrains Mono");
-
-    simulation.on("tick", () => {
-
-      links
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
-
-      nodes
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
-
-      labels
-        .attr("x", d => d.x + 10)
-        .attr("y", d => d.y + 5);
-    });
-
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        width: "100%",
-        height: "100%"
-      }}
-    />
-  );
+        </div>
+    );
 }
