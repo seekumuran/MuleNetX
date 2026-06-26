@@ -8,23 +8,22 @@
 
 ### Home — India Risk Heatmap
 ![India Heatmap](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.02%20PM%20(1).jpeg)
-*National-level suspicious volume heatmap with state-level drill-down. Tamil Nadu shown with Risk 73/100 (MED), ₹7.4L volume across 17 accounts.*
 
 ### Graph Explorer
 ![Graph Explorer](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.03%20PM%20(1).jpeg)
-*D3 force-directed network visualization. 152 nodes, 421 edges, 7 communities. Selected node ACC-8842 has Risk Score 94 — total inflow ₹4.5L, outflow ₹7.35L, 47 connections.*
+
 
 ### Cases Overview
 ![Cases Overview](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.01%20PM%20(1).jpeg)
-*Investigation case management dashboard. 23 High Risk cases, 68 Under Investigation, 156 Closed. AI Copilot panel visible on the right with live pattern identification.*
+
 
 ### Analytics — AI Intelligence Center
 ![Analytics Center](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.03%20PM.jpeg)
-*Model performance dashboard. AUROC 0.97, TPR 0.95, FPR 0.03. Feature importance, confusion matrix, model drift monitoring (PSI 0.08 — Stable), and AI Copilot.*
+
 
 ### Live Pipeline Terminal
 ![Terminal Pipeline](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.02%20PM.jpeg)
-*Real-time pipeline CLI. 1,842,761 accounts processed, 8,732,991 transactions analyzed, 327 alerts generated. Live logs showing Neo4j writes, feature extraction, and batch scoring.*
+
 
 ### Meet the Team — Team Meeting
 ![Team Call](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.01%20PM.jpeg)
@@ -294,79 +293,79 @@ MuleNetX/
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      MuleNetX System Overview                        │
+│                      MuleNetX System Overview                       │
 └─────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────┐    ┌──────────────┐    ┌──────────────────────────┐
-│   Datasets   │───▶│   Ingest     │───▶│      PostgreSQL           │
-│  (PaySim,    │    │  Pipeline    │    │  (Raw transactions,       │
-│   AML CSVs)  │    │  scripts/    │    │   accounts, schema)       │
+│   Datasets   │──▶│   Ingest     │──▶│      PostgreSQL          │
+│  (PaySim,    │    │  Pipeline    │    │  (Raw transactions,      │
+│   AML CSVs)  │    │  scripts/    │    │   accounts, schema)      │
 └──────────────┘    │  ingest.py   │    └───────────┬──────────────┘
                     └──────────────┘                │
                                                     │ SQL reads
                                                     ▼
 ┌────────────────────────────────────────────────────────────────────┐
-│                  Graph Construction Pipeline                         │
-│                    graph_engine/builder.py                           │
-│  PostgreSQL rows ──▶ Node/Edge creation ──▶ Neo4j property graph    │
+│                  Graph Construction Pipeline                       │
+│                    graph_engine/builder.py                         │
+│  PostgreSQL rows ──▶ Node/Edge creation ──▶ Neo4j property graph │
 └───────────────────────────────┬────────────────────────────────────┘
                                 │
                                 ▼
 ┌────────────────────────────────────────────────────────────────────┐
-│                     Neo4j Graph Database                             │
-│                                                                      │
-│  (:Account)-[:SENT]->(:Transaction)->[:RECEIVED_BY]->(:Account)     │
-│  (:Account)-[:BELONGS_TO]->(:FraudRing)                             │
-│  Node properties: pagerank, betweenness, community_id, risk_score   │
+│                     Neo4j Graph Database                           │
+│                                                                    │
+│  (:Account)-[:SENT]->(:Transaction)->[:RECEIVED_BY]->(:Account)    │
+│  (:Account)-[:BELONGS_TO]->(:FraudRing)                            │
+│  Node properties: pagerank, betweenness, community_id, risk_score  │
 └─────────────┬──────────────────────────────────────────────────────┘
               │                            │
               │ Cypher queries             │ Graph reads for features
               ▼                            ▼
 ┌──────────────────────┐    ┌──────────────────────────────────────┐
-│  Graph Analytics     │    │        Intelligence Core              │
-│  graph_engine/       │    │        intelligence-core/             │
-│                      │    │                                       │
-│  - PageRank          │    │  - Feature engineering (40+ features) │
-│  - Betweenness       │    │  - Graph + transactional features     │
-│  - Community detect  │    │  - Feature vector assembly            │
-│  - Fraud ring detect │    │                                       │
-│  - Risk propagation  │    └──────────────────┬────────────────────┘
+│  Graph Analytics     │    │        Intelligence Core             │
+│  graph_engine/       │    │        intelligence-core/            │
+│                      │    │                                      │
+│  - PageRank          │    │  - Feature engineering (40+ features)│
+│  - Betweenness       │    │  - Graph + transactional features    │
+│  - Community detect  │    │  - Feature vector assembly           │
+│  - Fraud ring detect │    │                                      │
+│  - Risk propagation  │    └──────────────────┬───────────────────┘
 └──────────────────────┘                       │
        │ Writes back to                        │ Feature vectors
        │ Neo4j nodes                           ▼
        ▼                          ┌──────────────────────────────┐
-┌──────────────────┐              │        ML Engine              │
-│ Neo4j (enriched) │              │        ml-engine/             │
-│  - community_id  │              │                               │
-│  - pagerank      │              │  - XGBoost training           │
-│  - fraud_ring_id │              │  - SHAP explanations          │
-│  - risk_score    │              │  - Model artifact storage     │
+┌──────────────────┐              │        ML Engine             │
+│ Neo4j (enriched) │              │        ml-engine/            │
+│  - community_id  │              │                              │
+│  - pagerank      │              │  - XGBoost training          │
+│  - fraud_ring_id │              │  - SHAP explanations         │
+│  - risk_score    │              │  - Model artifact storage    │
 └──────────────────┘              └──────────────┬───────────────┘
                                                  │ Scores + SHAP
                                                  ▼
 ┌────────────────────────────────────────────────────────────────────┐
-│                        FastAPI Backend                               │
-│                                                                      │
-│  /api/graph/*        - Graph traversal, subgraph queries            │
-│  /api/ml/*           - Scoring, explanation endpoints               │
-│  /api/investigation/* - Investigation workspace management          │
-│  /api/risk/*         - Risk propagation and aggregation             │
-│  /api/ai/*           - AI copilot (Ollama + context injection)      │
+│                        FastAPI Backend                             │
+│                                                                    │
+│  /api/graph/*        - Graph traversal, subgraph queries           │
+│  /api/ml/*           - Scoring, explanation endpoints              │
+│  /api/investigation/* - Investigation workspace management         │
+│  /api/risk/*         - Risk propagation and aggregation            │
+│  /api/ai/*           - AI copilot (Ollama + context injection)     │
 └──────────────────────────────────┬─────────────────────────────────┘
                                    │ REST/JSON
                                    ▼
 ┌────────────────────────────────────────────────────────────────────┐
-│                       React Dashboard                                │
-│                                                                      │
+│                       React Dashboard                              │
+│                                                                    │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────────┐  │
 │  │ Graph        │  │ Risk Panel   │  │ AI Copilot               │  │
 │  │ Explorer     │  │ (SHAP charts │  │ (Qwen 2.5 7B via Ollama) │  │
 │  │ (D3 Force)   │  │  risk scores)│  │                          │  │
 │  └──────────────┘  └──────────────┘  └──────────────────────────┘  │
-│  ┌──────────────────────────────────────────────────────────────┐   │
-│  │             Investigation Workspace                           │   │
-│  │  (Session mgmt, findings, fraud ring visualization)          │   │
-│  └──────────────────────────────────────────────────────────────┘   │
+│  ┌──────────────────────────────────────────────────────────────┐  │
+│  │             Investigation Workspace                          │  │
+│  │  (Session mgmt, findings, fraud ring visualization)          │  │
+│  └──────────────────────────────────────────────────────────────┘  │
 └────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────┐
@@ -1656,7 +1655,7 @@ The AI copilot is an investigation assistant powered by a local LLM. It allows i
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│                    AI Copilot Request Flow                        │
+│                    AI Copilot Request Flow                       │
 └──────────────────────────────────────────────────────────────────┘
 
 Investigator: "Why is account C123 flagged?"
