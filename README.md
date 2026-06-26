@@ -26,25 +26,25 @@
 ![Terminal Pipeline](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.02%20PM.jpeg)
 *Real-time pipeline CLI. 1,842,761 accounts processed, 8,732,991 transactions analyzed, 327 alerts generated. Live logs showing Neo4j writes, feature extraction, and batch scoring.*
 
-### Development — Team Demo
+### Meet the Team — Team Meeting
 ![Team Call](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.01%20PM.jpeg)
-*MuleNetX Omega (next-generation branch) README shown during team review call. Kumaran Chandrashekar presenting to Partha V J, Sarvesh Murugan, and Mohammed Tawheed.*
+
 ---
 
 ## Table of Contents
 
- [Overview](#1-overview)
- [Why MuleNetX Exists](#2-why-mulenetx-exists)
- [Core Design Philosophy](#3-core-design-philosophy)
- [Repository Layout](#4-repository-layout)
- [High-Level System Architecture](#5-high-level-system-architecture)
- [Data Flow Architecture](#6-data-flow-architecture)
- [Neo4j Graph Architecture](#7-neo4j-graph-architecture)
- [Entity Model](#8-entity-model)
- [Transaction Graph Model](#9-transaction-graph-model)
- [Graph Construction Pipeline](#10-graph-construction-pipeline)
- [Feature Engineering Pipeline](#11-feature-engineering-pipeline)
- [Risk Scoring Architecture](#12-risk-scoring-architecture)
+1. [Overview](#1-overview)
+2. [Why MuleNetX Exists](#2-why-mulenetx-exists)
+3. [Core Design Philosophy](#3-core-design-philosophy)
+4. [Repository Layout](#4-repository-layout)
+5. [High-Level System Architecture](#5-high-level-system-architecture)
+6. [Data Flow Architecture](#6-data-flow-architecture)
+7. [Neo4j Graph Architecture](#7-neo4j-graph-architecture)
+8. [Entity Model](#8-entity-model)
+9. [Transaction Graph Model](#9-transaction-graph-model)
+10. [Graph Construction Pipeline](#10-graph-construction-pipeline)
+11. [Feature Engineering Pipeline](#11-feature-engineering-pipeline)
+12. [Risk Scoring Architecture](#12-risk-scoring-architecture)
 13. [XGBoost Fraud Detection Engine](#13-xgboost-fraud-detection-engine)
 14. [Explainability Layer (SHAP)](#14-explainability-layer-shap)
 15. [Fraud Ring Detection Engine](#15-fraud-ring-detection-engine)
