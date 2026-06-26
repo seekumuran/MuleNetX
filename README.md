@@ -7,29 +7,28 @@
 ## Screenshots
 
 ### Home — India Risk Heatmap
-![India Heatmap](images/india_heatmap.jpeg)
+![India Heatmap](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.01%20PM.jpeg)
 *National-level suspicious volume heatmap with state-level drill-down. Tamil Nadu shown with Risk 73/100 (MED), ₹7.4L volume across 17 accounts.*
 
 ### Graph Explorer
-![Graph Explorer](images/graph_explorer.jpeg)
+![Graph Explorer](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.01%20PM%20(1).jpeg)
 *D3 force-directed network visualization. 152 nodes, 421 edges, 7 communities. Selected node ACC-8842 has Risk Score 94 — total inflow ₹4.5L, outflow ₹7.35L, 47 connections.*
 
 ### Cases Overview
-![Cases Overview](images/cases_overview.jpeg)
+![Cases Overview](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.02%20PM.jpeg)
 *Investigation case management dashboard. 23 High Risk cases, 68 Under Investigation, 156 Closed. AI Copilot panel visible on the right with live pattern identification.*
 
 ### Analytics — AI Intelligence Center
-![Analytics Center](images/analytics_center.jpeg)
+![Analytics Center](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.02%20PM%20(1).jpeg)
 *Model performance dashboard. AUROC 0.97, TPR 0.95, FPR 0.03. Feature importance, confusion matrix, model drift monitoring (PSI 0.08 — Stable), and AI Copilot.*
 
 ### Live Pipeline Terminal
-![Terminal Pipeline](images/terminal_pipeline.jpeg)
+![Terminal Pipeline](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.03%20PM.jpeg)
 *Real-time pipeline CLI. 1,842,761 accounts processed, 8,732,991 transactions analyzed, 327 alerts generated. Live logs showing Neo4j writes, feature extraction, and batch scoring.*
 
 ### Development — Team Demo
-![Team Call](images/team_call.jpeg)
+![Team Call](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.03%20PM%20(1).jpeg)
 *MuleNetX Omega (next-generation branch) README shown during team review call. Kumaran Chandrashekar presenting to Partha V J, Sarvesh Murugan, and Mohammed Tawheed.*
-
 ---
 
 ## Table of Contents
