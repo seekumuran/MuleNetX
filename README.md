@@ -4,6 +4,34 @@
 
 ---
 
+## Screenshots
+
+### Home — India Risk Heatmap
+![India Heatmap](images/india_heatmap.jpeg)
+*National-level suspicious volume heatmap with state-level drill-down. Tamil Nadu shown with Risk 73/100 (MED), ₹7.4L volume across 17 accounts.*
+
+### Graph Explorer
+![Graph Explorer](images/graph_explorer.jpeg)
+*D3 force-directed network visualization. 152 nodes, 421 edges, 7 communities. Selected node ACC-8842 has Risk Score 94 — total inflow ₹4.5L, outflow ₹7.35L, 47 connections.*
+
+### Cases Overview
+![Cases Overview](images/cases_overview.jpeg)
+*Investigation case management dashboard. 23 High Risk cases, 68 Under Investigation, 156 Closed. AI Copilot panel visible on the right with live pattern identification.*
+
+### Analytics — AI Intelligence Center
+![Analytics Center](images/analytics_center.jpeg)
+*Model performance dashboard. AUROC 0.97, TPR 0.95, FPR 0.03. Feature importance, confusion matrix, model drift monitoring (PSI 0.08 — Stable), and AI Copilot.*
+
+### Live Pipeline Terminal
+![Terminal Pipeline](images/terminal_pipeline.jpeg)
+*Real-time pipeline CLI. 1,842,761 accounts processed, 8,732,991 transactions analyzed, 327 alerts generated. Live logs showing Neo4j writes, feature extraction, and batch scoring.*
+
+### Development — Team Demo
+![Team Call](images/team_call.jpeg)
+*MuleNetX Omega (next-generation branch) README shown during team review call. Kumaran Chandrashekar presenting to Partha V J, Sarvesh Murugan, and Mohammed Tawheed.*
+
+---
+
 ## Table of Contents
 
 1. [Overview](#1-overview)
@@ -55,8 +83,8 @@
 47. [Design Tradeoffs](#47-design-tradeoffs)
 48. [Technical Debt](#48-technical-debt)
 49. [Engineering Lessons Learned](#49-engineering-lessons-learned)
-50. [References](#51-references)
-51. [License](#52-license)
+50. [System Requirements](#50-system-requirements)
+51. [References](#51-references)
 
 ---
 
@@ -242,7 +270,6 @@ MuleNetX/
     ├── run_analytics.py
     ├── train_model.py
     └── healthcheck.py
-
 ```
 
 ### Module Responsibility Summary
@@ -2912,7 +2939,128 @@ AUROC of 0.9987 on PaySim created a false sense of model quality. The same archi
 
 ---
 
-## 50. References
+## 50. System Requirements
+
+### Minimum Requirements
+
+| Component | Minimum | Recommended |
+|---|---|---|
+| **RAM** | 16 GB | 32 GB |
+| **CPU** | 4 cores (x86_64) | 8–16 cores |
+| **Storage** | 40 GB free | 100 GB NVMe SSD |
+| **OS** | Linux (Ubuntu 22.04+), macOS 13+, Windows 11 + WSL2 | Ubuntu 22.04 LTS |
+| **Docker** | 24.x + Docker Compose v2 | Latest stable |
+| **Python** | 3.11 | 3.11 |
+| **Node.js** | 18 LTS | 20 LTS |
+
+### GPU (Optional, Strongly Recommended for Copilot)
+
+| GPU VRAM | Quantization | Tokens/sec | Copilot Response Time |
+|---|---|---|---|
+| None (CPU) | Q4_K_M | 5–15 | 20–55 seconds |
+| 8 GB | Q4_K_M | 30–80 | 3–8 seconds |
+| 12 GB | Q8 | 50–100 | 2–5 seconds |
+| 16 GB+ | FP16 | 80–150 | 1–3 seconds |
+
+NVIDIA GPU requires CUDA 12.x. AMD GPU requires ROCm 5.7+. Apple Silicon uses Metal (MPS backend via Ollama).
+
+### Service Port Allocation
+
+| Service | Port | Protocol |
+|---|---|---|
+| FastAPI Backend | 8000 | HTTP |
+| React Dashboard | 5173 | HTTP |
+| Neo4j Browser | 7474 | HTTP |
+| Neo4j Bolt | 7687 | Bolt |
+| PostgreSQL | 5432 | TCP |
+| Ollama | 11434 | HTTP |
+
+### Python Dependencies (ML and Core)
+
+```
+# Core ML
+xgboost>=2.0.0
+shap>=0.44.0
+scikit-learn>=1.4.0
+pandas>=2.0.0
+numpy>=1.26.0
+
+# Graph
+neo4j>=5.15.0
+networkx>=3.0
+
+# Backend
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+sqlalchemy[asyncio]>=2.0.0
+asyncpg>=0.29.0
+httpx>=0.26.0
+
+# Data processing
+pyarrow>=14.0.0
+psycopg2-binary>=2.9.0
+
+# Utilities
+python-dotenv>=1.0.0
+structlog>=24.0.0
+```
+
+### Node.js Dependencies (Dashboard)
+
+```json
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "d3": "^7.8.5",
+    "zustand": "^4.5.0",
+    "react-router-dom": "^6.22.0",
+    "axios": "^1.6.0",
+    "@tanstack/react-query": "^5.17.0",
+    "recharts": "^2.10.0",
+    "clsx": "^2.1.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "tailwindcss": "^3.4.0"
+  }
+}
+```
+
+### Quick Start
+
+```bash
+# 1. Clone and enter project
+git clone https://github.com/Kumaranshub/mulenetx-omega
+cd mulenetx-omega
+
+# 2. Start all services (first run pulls ~8GB for Qwen model)
+docker compose up -d
+
+# 3. Wait for services to be healthy (~3–5 min on first run)
+docker compose ps
+
+# 4. Download and ingest PaySim dataset
+python scripts/ingest.py --dataset paysim
+
+# 5. Build the graph and run analytics
+python scripts/run_analytics.py
+
+# 6. Train the model
+python scripts/train_model.py
+
+# 7. Open the dashboard
+open http://localhost:5173
+```
+
+After completing all pipeline stages (~140 minutes for full PaySim), the dashboard will show scored accounts, detected fraud rings, and a fully operational AI copilot.
+
+---
+
+## 51. References
 
 **Datasets and Benchmarks**
 
@@ -2954,28 +3102,4 @@ Qwen Team. (2024). Qwen2.5: A Party of Foundation Models. Alibaba Cloud.
 
 ---
 
-## 51. License
-
-### Third-Party Licenses
-
-| Component | License | Version |
-|---|---|---|
-| Neo4j Community Edition | GPL-3.0 | 5.15 |
-| Neo4j Graph Data Science | Apache-2.0 | 2.6 |
-| APOC Library | Apache-2.0 | 5.15 |
-| XGBoost | Apache-2.0 | 2.0.x |
-| SHAP | MIT | 0.44.x |
-| FastAPI | MIT | 0.109.x |
-| React | MIT | 18.x |
-| D3.js | ISC | 7.x |
-| Ollama | MIT | Latest |
-| Qwen 2.5 7B | Qwen License Agreement | 2.5 |
-| NetworkX | BSD-3-Clause | 3.x |
-| scikit-learn | BSD-3-Clause | 1.4.x |
-| pandas | BSD-3-Clause | 2.x |
-
-> The Qwen 2.5 model is subject to the Qwen License Agreement, which permits non-commercial and commercial use with attribution. Review the full Qwen License for your specific deployment context.
-
----
-
-*MuleNetX v1.0 — Engineering Reference Platform. For questions, issues, or contributions, open an issue on the project repository.*
+*MuleNetX — Graph-Native Financial Crime Intelligence Platform. For questions, issues, or contributions, open an issue on the project repository.*
