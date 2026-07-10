@@ -1,62 +1,111 @@
 import "./ExecutiveSummary.css";
 
 export default function ExecutiveSummary() {
-    return (
-        <div className="executive-summary">
 
-            <div className="summary-header">
-                <span className="ai-dot"></span>
-                <h2>AI Executive Summary</h2>
-                <span className="confidence">
-                    Confidence 94.2%
-                </span>
+    const summary = {
+        confidence: 94.2,
+        exposure: "₹2.31 Cr",
+        recovery: "+7.8%",
+        fraudIncrease: "+11.4%",
+        lastUpdated: "10:42 AM",
+
+        findings: [
+            "Two new fraud rings identified in Karnataka.",
+            "Transaction velocity increased across western regions.",
+            "14 accounts require immediate analyst review."
+        ],
+
+        recommendations: [
+            "Freeze 12 high-risk accounts.",
+            "Increase monitoring for Maharashtra and Karnataka.",
+            "Escalate Cluster-17 investigation.",
+            "Retrain fraud model with latest transaction batch."
+        ]
+    };
+
+    return (
+
+        <section className="executive-summary">
+
+            <div className="summary-top">
+
+                <div>
+
+                    <p className="summary-tag">
+                        AI EXECUTIVE SUMMARY
+                    </p>
+
+                    <h1>
+                        Executive Intelligence
+                    </h1>
+
+                    <p className="summary-date">
+                        Last Updated • {summary.lastUpdated}
+                    </p>
+
+                </div>
+
+                <div className="confidence-box">
+
+                    <span>Confidence</span>
+
+                    <h2>{summary.confidence}%</h2>
+
+                </div>
+
             </div>
 
             <div className="summary-grid">
 
                 <div className="summary-card">
-                    <h4>Business Overview</h4>
 
-                    <p>
-                        Fraud activity increased
-                        <span className="red"> 11.4%</span>
-                        across western regions.
-                    </p>
+                    <h3>Business Overview</h3>
 
-                    <p>
-                        Estimated financial exposure
-                        <span className="yellow">
-                            ₹2.31 Cr
-                        </span>
-                    </p>
+                    <div className="metric">
 
-                    <p>
-                        Recovery efficiency improved
-                        <span className="green">
-                            +7.8%
-                        </span>
-                    </p>
+                        <span>Fraud Activity</span>
+
+                        <strong className="danger">
+                            {summary.fraudIncrease}
+                        </strong>
+
+                    </div>
+
+                    <div className="metric">
+
+                        <span>Financial Exposure</span>
+
+                        <strong className="warning">
+                            {summary.exposure}
+                        </strong>
+
+                    </div>
+
+                    <div className="metric">
+
+                        <span>Recovery Efficiency</span>
+
+                        <strong className="success">
+                            {summary.recovery}
+                        </strong>
+
+                    </div>
 
                 </div>
 
                 <div className="summary-card">
 
-                    <h4>AI Findings</h4>
+                    <h3>AI Findings</h3>
 
                     <ul>
 
-                        <li>
-                            Two new layering clusters detected
-                        </li>
+                        {summary.findings.map((item, index) => (
 
-                        <li>
-                            High transaction velocity from
-                            Maharashtra.
-                        </li>
+                            <li key={index}>
+                                {item}
+                            </li>
 
-                        <li>
-                            14 accounts require manual review.
-                        </li>
+                        ))}
 
                     </ul>
 
@@ -64,21 +113,17 @@ export default function ExecutiveSummary() {
 
                 <div className="summary-card">
 
-                    <h4>Recommended Actions</h4>
+                    <h3>Recommended Actions</h3>
 
                     <ul>
 
-                        <li>
-                            Freeze 12 high-risk accounts
-                        </li>
+                        {summary.recommendations.map((item, index) => (
 
-                        <li>
-                            Increase monitoring in Karnataka
-                        </li>
+                            <li key={index}>
+                                {item}
+                            </li>
 
-                        <li>
-                            Escalate Cluster-17 investigation
-                        </li>
+                        ))}
 
                     </ul>
 
@@ -86,6 +131,8 @@ export default function ExecutiveSummary() {
 
             </div>
 
-        </div>
+        </section>
+
     );
+
 }
