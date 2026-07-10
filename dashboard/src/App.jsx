@@ -5,28 +5,31 @@ import GraphCanvas from "./components/GraphCanvas";
 import InvestigationWorkspace from "./components/InvestigationWorkspace";
 import RiskLeaderboard from "./components/RiskLeaderboard";
 import SystemOverview from "./components/SystemOverview";
+import ExecutiveSummary from "./components/ExecutiveSummary";
 
 export default function App() {
 
     return (
 
-        <div>
+     <div>
 
-            <SystemOverview />
+    <ExecutiveSummary />
 
-            <AlertFeed />
+    <SystemOverview />
 
-            <RiskLeaderboard />
+    <AlertFeed />
 
-            <CommunityExplorer />
+    <RiskLeaderboard />
 
-            <GraphCanvas />
+    <CommunityExplorer />
 
-            <InvestigationWorkspace />
+    <GraphCanvas />
 
-            <CaseManagement />
+    <InvestigationWorkspace />
 
-        </div>
+    <CaseManagement />
+
+</div>
 
     );
 }
