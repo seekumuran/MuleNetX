@@ -1,49 +1,75 @@
-from random import choice
+from dataclasses import dataclass
+from typing import List
+import random
+
+
+@dataclass
+class Recommendation:
+
+    title: str
+    priority: str
+    confidence: float
+    impact: str
+    description: str
 
 
 class RecommendationEngine:
 
     def __init__(self):
 
-        self.recommendations = [
+        self.templates = [
 
-            {
-                "title": "Freeze High Risk Accounts",
-                "description": "12 accounts exceeded fraud threshold.",
-                "priority": "CRITICAL",
-                "confidence": 94,
-                "impact": "₹2.31 Cr Prevented"
-            },
+            Recommendation(
+                title="Freeze High-Risk Accounts",
+                priority="CRITICAL",
+                confidence=94.2,
+                impact="Estimated Fraud Reduction: 31%",
+                description="Accounts exceeded fraud threshold and are strongly connected to an active fraud ring."
+            ),
 
-            {
-                "title": "Increase Regional Monitoring",
-                "description": "Transaction velocity increasing in Karnataka.",
-                "priority": "HIGH",
-                "confidence": 91,
-                "impact": "Reduce fraud by 18%"
-            },
+            Recommendation(
+                title="Escalate Investigation",
+                priority="HIGH",
+                confidence=92.8,
+                impact="Reduce Investigation Time",
+                description="Community Cluster-17 expanded significantly over the last 24 hours."
+            ),
 
-            {
-                "title": "Escalate Cluster Investigation",
-                "description": "Community Cluster-17 expanded by 22%.",
-                "priority": "HIGH",
-                "confidence": 96,
-                "impact": "Prevent ring propagation"
-            },
+            Recommendation(
+                title="Increase Regional Monitoring",
+                priority="HIGH",
+                confidence=90.5,
+                impact="Reduce Regional Exposure",
+                description="Transaction velocity anomaly detected across western region."
+            ),
 
-            {
-                "title": "Retrain Fraud Model",
-                "description": "Concept drift detected.",
-                "priority": "MEDIUM",
-                "confidence": 88,
-                "impact": "Increase model accuracy"
-            }
+            Recommendation(
+                title="Retrain Fraud Model",
+                priority="MEDIUM",
+                confidence=88.4,
+                impact="Improve Detection Accuracy",
+                description="Feature drift detected within recent transaction batches."
+            )
 
         ]
 
     def generate(self):
 
-        return choice(self.recommendations)
+        recommendation = random.choice(self.templates)
+
+        return {
+
+            "title": recommendation.title,
+
+            "priority": recommendation.priority,
+
+            "confidence": recommendation.confidence,
+
+            "impact": recommendation.impact,
+
+            "description": recommendation.description
+
+        }
 
 
 engine = RecommendationEngine()
