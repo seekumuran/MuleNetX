@@ -24,10 +24,6 @@
 ### Live Pipeline Terminal
 ![Terminal Pipeline](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.02%20PM.jpeg)
 
-
-### Meet the Team — Team Meeting
-![Team Call](screenshots/WhatsApp%20Image%202026-06-26%20at%202.03.01%20PM.jpeg)
-
 ---
 
 ## Table of Contents
